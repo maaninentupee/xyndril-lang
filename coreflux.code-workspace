@@ -1,0 +1,19 @@
+{
+    "folders": [
+      {
+        "path": "."
+      }
+    ],
+    "settings": {
+      "python.defaultInterpreterPath": "python3",
+      "terminal.integrated.cwd": "${workspaceFolder}",
+      "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+      },
+      "editor.tabSize": 2,
+      "editor.wordWrap": "on"
+    }
+  }
+  
+
