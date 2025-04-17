@@ -1,6 +1,6 @@
-# ⚙️ NexLang Kit
+# ⚙️ CoreFlux Kit
 
-🚀 NexLang on kokeellinen full-stack-ohjelmointikieli, joka yhdistää modernin backendiin, frontend-komponentteihin ja tekoälyyn suunnitellun syntaksin yhteen kieliytimeen.
+🚀 CoreFlux on kokeellinen full-stack-ohjelmointikieli, joka yhdistää modernin backendiin, frontend-komponentteihin ja tekoälyyn suunnitellun syntaksin yhteen kieliytimeen.
 
 ## 🔧 Mitä tämä versio sisältää:
 - `print()`-komento
