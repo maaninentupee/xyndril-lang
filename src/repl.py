@@ -1,5 +1,5 @@
 # src/repl.py
-# CoreFlux REPL (Read-Eval-Print Loop)
+# Xyndril REPL (Read-Eval-Print Loop)
 from src.ast import *
 from src.interpreter import Interpreter
 
@@ -8,12 +8,12 @@ import sys
 class DummyParser:
     # Placeholder parser: expects user to type Python AST node creation code
     def parse(self, line):
-        # In oikea parseri, tämä muuntaisi CoreFlux-kieltä AST:ksi
+        # In oikea parseri, tämä muuntaisi Xyndril-kieltä AST:ksi
         # Nyt vain eval Pythonilla testitarkoitukseen
         return eval(line)
 
 def main():
-    print("CoreFlux REPL. Type AST node creation code. Ctrl+C to exit.")
+    print("Xyndril REPL. Type AST node creation code. Ctrl+C to exit.")
     interpreter = Interpreter()
     parser = DummyParser()
     env = None

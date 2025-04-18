@@ -1,5 +1,5 @@
 # src/ast.py
-# CoreFlux AST (Abstract Syntax Tree) production implementation
+# Xyndril AST (Abstract Syntax Tree) production implementation
 
 class Node:
     """Base class for all AST nodes."""

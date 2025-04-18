@@ -1,5 +1,5 @@
-// CoreFlux ANTLR4 grammar (coreflux.g4)
-grammar CoreFlux;
+// Xyndril ANTLR4 grammar (xyndril.g4)
+grammar Xyndril;
 
 program: statement* EOF;
 

@@ -1,10 +1,10 @@
-# CoreFlux Manifest (Technical Vision)
+# Xyndril Manifest (Technical Vision)
 
-## ✨ What is CoreFlux?
+## ✨ What is Xyndril?
 
-**CoreFlux** is an experimental full-stack programming language designed to unify frontend, backend, and AI logic into a seamless development experience.
+**Xyndril** is an experimental full-stack programming language designed to unify frontend, backend, and AI logic into a seamless development experience.
 
-Unlike traditional stacks where developers must switch between multiple languages and tools (JavaScript, Python, OpenAI SDKs), CoreFlux proposes a **single-language architecture** that eliminates friction between layers.
+Unlike traditional stacks where developers must switch between multiple languages and tools (JavaScript, Python, OpenAI SDKs), Xyndril proposes a **single-language architecture** that eliminates friction between layers.
 
 ---
 
@@ -20,7 +20,7 @@ Unlike traditional stacks where developers must switch between multiple language
 
 ## 💡 Key Differentiators
 
-| Feature | CoreFlux | Other Languages |
+| Feature | Xyndril | Other Languages |
 |--------|----------|-----------------|
 | Full-stack support | ✅ One syntax for all layers | ❌ Separated frontend/backend |
 | AI integration | ✅ Native in syntax | ❌ Requires external libs |
@@ -107,7 +107,7 @@ let adults = users
 
 ## 🌍 Vision
 
-**CoreFlux** is not just a new syntax. It is an attempt to create a cohesive, AI-native programming world where API logic, UI elements, and AI behavior are written in one language.
+**Xyndril** is not just a new syntax. It is an attempt to create a cohesive, AI-native programming world where API logic, UI elements, and AI behavior are written in one language.
 
 **One language. One stack. Total fusion.**
 
@@ -119,7 +119,7 @@ let adults = users
 |-----------------------|------------------------|
 | `design/ast.cld.py` | → `src/ast.py` |
 | `design/interpreter.cld.py` | → `src/interpreter.py` |
-| `design/parser_spec.md` | → `parser/coreflux.g4` |
+| `design/parser_spec.md` | → `parser/xyndril.g4` |
 | *(REPL Design)* | → `src/repl.py` |
 
 Design files are used as a planning layer, and refactoring is done by GPT for final integration into the compiler.
@@ -127,6 +127,6 @@ Design files are used as a planning layer, and refactoring is done by GPT for fi
 ---
 
 ## 🔍 See Also
-- [GitHub Repository](https://github.com/maaninentupee/coreflux-kit)
+- [GitHub Repository](https://github.com/maaninentupee/xyndril-kit)
 - `README.md` for introductory summary
 

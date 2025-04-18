@@ -1,10 +1,10 @@
-# CoreFlux Parser Specification
+# Xyndril Parser Specification
 
-This document specifies the syntax for the CoreFlux language and how the parser should recognize language constructs.
+This document specifies the syntax for the Xyndril language and how the parser should recognize language constructs.
 
 ## 1. General Syntax
 
-CoreFlux uses a C-style syntax with curly braces, semicolons, and common operators. The language is designed to be familiar to developers with experience in JavaScript, TypeScript, and similar languages while incorporating unique features for full-stack development.
+Xyndril uses a C-style syntax with curly braces, semicolons, and common operators. The language is designed to be familiar to developers with experience in JavaScript, TypeScript, and similar languages while incorporating unique features for full-stack development.
 
 ## 2. Lexical Structure
 
@@ -274,7 +274,7 @@ x++;
 
 ## 6. Program Structure
 
-A CoreFlux program consists of a sequence of statements and declarations at the top level:
+A Xyndril program consists of a sequence of statements and declarations at the top level:
 
 ```
 // Imports (future feature)

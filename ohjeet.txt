@@ -1,93 +1,41 @@
-🧠 GPT-4 Prompt: Refaktoroi CoreFluxin suunnittelutiedostot
-Projekti: CoreFlux – kokeellinen full-stack-ohjelmointikieli, joka yhdistää luokat, funktiot, REST-reitit ja tulevaisuudessa tekoälytuet.
+✅ Tarkistuslista agentille uudelleen:
+🟩 = Tarkistettava / tehtävä kohta
+✅ = Kaikki kunnossa
 
-Tehtäväsi: Refaktoroi Clauden tekemät suunnittelutiedostot tuotantokelpoisiksi lähdekooditiedostoiksi.
-
-Lähdetiedostot (design/):
-
-design/ast.cld.py – AST (abstract syntax tree) -rakenne, tukee class, let, if, arrow-fn, route
-
-design/interpreter.cld.py – Tulkki, joka evaluoi AST:n
-
-design/parser_spec.md – Kuvaus CoreFluxin syntaksin rakenteesta
-
-✅ Refaktorointitavoitteet
-🔹 Tuotantokoodi:
-
-src/ast.py
-Toteuta tuotantovalmis AST-luokkien rakenne. Pidä koodi modulaarisena ja selkeänä.
-
-src/interpreter.py
-Evaluoi AST. Tue:
-
-muuttujat (let)
-
-ehtolauseet (if)
-
-nuolifunktiot (arrow-fn)
-
-luokat ja metodit (class)
-
-route-lohkojen rakenne
-
-parser/coreflux.g4
-Luo ANTLR4-syntaksitiedosto, joka tunnistaa parser_spec.md:ssä kuvatut rakenneosat:
-
-muuttujien määrittely (let)
-
-nuolifunktiot
-
-luokat
-
-metodit
-
-route-määrittelyt
-
-if-else-rakenne
-
-🔸 REPL (Read-Eval-Print Loop):
-
-src/repl.py
-Luo komentorivipohjainen silmukka, joka:
-
-Lukee käyttäjän syötteen
-
-Parsii sen AST:ksi
-
-Evaluoi sen tulkin avulla
-
-Tulostaa tuloksen
-
-Tukee muuttujien säilymistä istunnon ajan
-
-🔧 Huomioitavaa
-Refaktoroi mahdollisimman siististi, käytä selkeitä nimiä ja jaa loogisesti luokat/tiedot.
-
-Kommentoi tarvittaessa koodia.
-
-Luo tarvittaessa apufunktioita.
-
-Ei tarvitse vielä toteuttaa AI-tukea – rakenne voi tukea sitä myöhemmin.
+🟩 1. Onko parser_spec.md docs/-kansiossa?
+Komentorivillä varmista:
 
 
+ls docs/parser_spec.md
+Jos ei näy → kopioi tai siirrä:
 
 
+cp design/parser_spec.md docs/
+🟩 2. Onko tiedosto lisätty mkdocs.yml-tiedoston nav:-osioon?
+Esimerkki:
 
 
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - Manifest: xyndril-manifest.md
+  - Parser Spec: parser_spec.md
+🔁 Jos parser_spec.md puuttuu tai osoittaa väärään polkuun, MkDocs ei sisällytä sitä dokumentaatioon.
+
+🟩 3. Onko linkit Markdown-tiedostoissa oikeassa muodossa?
+Vanha virheellinen:
 
 
+[parser_spec](../design/parser_spec.md)
+Oikea tapa:
 
 
+[parser_spec](parser_spec.md)
+🟩 4. Onko palvelin käynnistetty uudelleen muutosten jälkeen?
+Jos tiedostoa siirrettiin tai mkdocs.yml päivitettiin, aja:
 
 
-
-
-
-
-
-
-
-
+mkdocs serve -a localhost:8001
 
 
 
@@ -122,4 +70,3 @@ Molempien editorien (Windsurf Editorin Cascade-agentti ja VS Code Copilot) tekem
 Ennen muokkaamista agentti suorittaa git pull varmistaakseen, että paikallinen kopio on ajan tasalla.
 Muutosten jälkeen tehdään commit ja push, jolloin molemmat ympäristöt saavat päivitykset lähes reaaliaikaisesti.
 Näin varmistetaan, että agentti huomioi sekä Windsurfissa että VS Codessa tehdyt koodimuutokset ja ettei mikään korjaus tapahdu ylimääräisesti ylikirjoittaen toisen tekemät parannukset.
-

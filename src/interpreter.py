@@ -1,5 +1,5 @@
 # src/interpreter.py
-# CoreFlux Interpreter: Evaluates AST produced by parser
+# Xyndril Interpreter: Evaluates AST produced by parser
 from .ast import *
 
 class Environment:

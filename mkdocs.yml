@@ -1,0 +1,22 @@
+site_name: Xyndril Docs
+site_url: https://maaninentupee.github.io/xyndril-lang/
+repo_url: https://github.com/maaninentupee/xyndril-lang
+repo_name: maaninentupee/xyndril-lang
+
+# Material theme
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.expand
+    - content.code.copy
+    - content.action.edit
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - Language Design: language-spec.md
+  - Parser Spec: parser_spec.md
+  - Workspace Setup: workspace-setup.md
+  - Manifest: xyndril-manifest.md

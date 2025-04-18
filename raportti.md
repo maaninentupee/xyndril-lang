@@ -1,82 +1,30 @@
-# CoreFlux-kielen manifesti ja tekninen kuvaus
 
-## 1. Manifesti: Miksi CoreFlux on olemassa?
+# Raportti: MkDocs 404-virheet ja sisällön päivittymättömyys
 
-CoreFlux on olemassa poistamaan keinotekoisia rajoja web-kehitystyössä. Perinteisesti täytyy käyttää monia eri kieliä (JavaScript/TypeScript frontend, Python/Java/jne. backend, SQL tietokantaan) ja työkaluja koko kehitysprosessissa. CoreFlux yhdistää kaikki nämä yhdeksi johdonmukaiseksi kieleksi.
+## Ongelman kuvaus
 
-### Miten CoreFlux eroaa muista kielistä?
+Projektin dokumentaatiota rakennettaessa MkDocsilla ilmeni kaksi pääongelmaa:
 
-CoreFlux eroaa muista kielistä kolmella merkittävällä tavalla:
-1. **Todellinen full-stack**: Yksi syntaksi ja semantiikka kaikille kerroksille
-2. **Natiivi tekoälyintegraatio**: Kielessä on sisäänrakennetut rakenteet AI-operaatioille
-3. **Saumattomat rajapinnat**: API-reitit ovat kielen rakenteita, eivät erillisiä kirjastoja
+1. **404-virheet (sivua ei löydy):**
+   - Navigaatiossa ja/tai markdown-tiedostoissa oli useita viittauksia tiedostoihin, jotka eivät olleet MkDocs:n käytettävissä.
+   - MkDocs näyttää vain docs/-kansion sisällä olevat tiedostot. Jos mkdocs.yml- tai markdown-linkeissä viitataan tiedostoihin projektin muissa kansioissa (esim. ../design/parser_spec.md), syntyy 404-virhe.
+   - Konsolilogeissa näkyi varoituksia puuttuvista tiedostoista ja linkeistä, jotka eivät löydy dokumentaatiosta.
 
-### Mitä ongelmaa CoreFlux ratkaisee?
+2. **Dokumentaation sisällön päivittymättömyys:**
+   - Vaikka tiedostoja muokattiin tai siirrettiin, MkDocs ei aina päivittänyt sisältöä oikein selaimessa.
+   - Tämä johtui siitä, että osa tiedostoista oli väärässä kansiossa, eikä MkDocs tunnistanut niitä osaksi dokumentaatiota.
+   - Lisäksi selain saattoi näyttää välimuistista vanhaa sisältöä, vaikka tiedostot oli päivitetty.
 
-CoreFlux ratkaisee kehittäjien työnkulun pirstoutumisen. Se eliminoi tarpeen vaihtaa kontekstia eri kielten välillä, mikä nopeuttaa kehitystä, vähentää virheitä rajakohdissa, ja mahdollistaa komponenttien optimoinnin koko stackissa.
+## Ratkaisut ja toimenpiteet
 
-## 2. CoreFluxin syntaksi
+- Kaikki dokumentaatiossa tarvittavat tiedostot (parser_spec.md, ast.cld.py, interpreter.cld.py, xyndril.g4) kopioitiin docs/-kansioon.
+- mkdocs.yml päivitettiin niin, että nav-viittaukset osoittavat vain docs/-kansion sisällä oleviin tiedostoihin.
+- Kaikki markdown-linkit tulee päivittää vastaamaan docs/-kansion rakennetta.
+- Selaimen välimuisti kannattaa tyhjentää, jos sisältö ei päivity odotetusti.
+- MkDocs-palvelin kannattaa käynnistää uudelleen muutosten jälkeen.
 
-```
-// Luokan määrittely
-class User {
-  // Ominaisuudet ja niiden tyypit
-  name: String
-  email: String
-  age: Number
-  
-  // Konstruktori
-  constructor(name, email, age) {
-    this.name = name
-    this.email = email
-    this.age = age
-  }
-  
-  // Metodi
-  greet() -> String {
-    return "Hello, I'm ${this.name}!"
-  }
-  
-  // API-reitti luokan sisällä
-  route GET /user/:id {
-    // ...hakukoodi
-    return this
-  }
-}
+## Yhteenveto
 
-// Funktionaalinen tyyli
-let double = (x: Number) -> Number => x * 2
+MkDocs-dokumentaatio toimii luotettavasti vain, kun kaikki viitattavat tiedostot ovat docs/-kansion sisällä ja nav-polut sekä markdown-linkit on päivitetty vastaamaan tätä rakennetta. Ongelmat johtuivat projektin ulkopuolisiin kansioihin viittaavista poluista sekä selain- ja palvelinvälimuistista. Oikeilla kansio- ja polkuasetuksilla sekä palvelimen uudelleenkäynnistyksellä 404-virheet ja sisällön päivittymättömyys saatiin ratkaistua.
 
-// Nuolisyntaksi lyhyille funktioille
-let add = (a, b) => a + b
-
-// If-else rakenne
-if (user.age >= 18) {
-  console.log("Adult")
-} else {
-  console.log("Minor")
-}
-
-// Funktionaalinen tietojen käsittely
-let adults = users
-  .filter(user => user.age >= 18)
-  .map(user => user.name)
-```
-
-## 3. CoreFluxin runtime-arkkitehtuuri
-
-CoreFluxin runtime perustuu tehokkaan virtuaalikoneen ympärille, joka pystyy suorittamaan koodia sekä selaimessa että palvelimella.
-
-### Muuttujien allokointi:
-- Muuttujat analysoidaan staattisesti käännösvaiheessa
-- Primitiivityypit (numerot, totuusarvot) allokoidaan pinossa
-- Monimutkaiset objektit hallitaan älykkäällä heap-muistinhallinnalla
-- Muuttujien elinkaari optimoidaan paikallisesti funktion kontekstiin
-
-### Garbage Collection -strategia:
-1. **Generational Collection**: Useimmat objektit ovat lyhytikäisiä, joten nuori sukupolvi kerätään usein, vanhempi sukupolvi harvemmin
-2. **Concurrent GC**: Muistin keräys tapahtuu rinnakkain sovelluksen suorituksen kanssa
-3. **Incremental Marking**: Suuret objektit merkitään asteittain minimoiden keskeytykset
-4. **Region-based Memory**: Muisti jaetaan alueisiin tiettyjen työtehtävien mukaan nopeuttaen keräystä
-
-CoreFluxin runtime myös synkronoi tilan saumattomasti asiakas- ja palvelinympäristöjen välillä hyödyntäen reaktiivista tiedonvirtamallia.
+---

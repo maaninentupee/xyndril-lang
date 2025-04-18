@@ -1,6 +1,6 @@
-# 🚀 CoreFlux
+# 🚀 Xyndril
 
-CoreFlux on kokeellinen full-stack-ohjelmointikieli, joka yhdistää modernin backendin, frontend-komponentit ja tekoälyn yhdeksi kieliytimeksi.
+Xyndril on kokeellinen full-stack-ohjelmointikieli, joka yhdistää modernin backendin, frontend-komponentit ja tekoälyn yhdeksi kieliytimeksi.
 
 ---
 
@@ -21,7 +21,7 @@ Varmista, että sinulla on Python 3.9 tai uudempi asennettuna.
 Aja ohjelma komentoriviltä:
 
 ```bash
-python cli/coreflux.py examples/hello.nx
+python cli/xyndril.py examples/hello.nx
 
 🧭 Tiekartta (v0.0.2+)
 🔜 ai.prompt(), ai.generate() – AI-komennot
@@ -31,9 +31,9 @@ python cli/coreflux.py examples/hello.nx
 🔜 REPL-tuki
 
 📁 Projektirakenne
-coreflux-kit/
+xyndril-kit/
 ├── cli/                 # CLI-käynnistysohjelma
-│   └── coreflux.py
+│   └── xyndril.py
 ├── examples/            # Esimerkkiohjelmat (.nx)
 │   └── hello.nx
 ├── parser/              # Tokenizer ja parser
@@ -47,14 +47,14 @@ coreflux-kit/
 │   └── parser_spec.md
 └── README.md
 
-💡 Miksi CoreFlux?
+💡 Miksi Xyndril?
 Nykyinen ohjelmointikehitys on hajautunutta eri kieliin:
 
 👨‍💻 Backend (Python, Go...)
 🌐 Frontend-komponentit (JS, React...)
 🤖 Tekoäly (OpenAI, langchain...)
 
-CoreFlux yhdistää kaiken yhteen kieleen.
+Xyndril yhdistää kaiken yhteen kieleen.
 
 Yksi kieli. Yksi projekti. Kaikki kerrokset.
 
@@ -95,7 +95,7 @@ src/ast.py
 
 src/interpreter.py
 
-parser/coreflux.g4
+parser/xyndril.g4
 
 src/repl.py (REPL-tuki)
 

@@ -1,7 +1,7 @@
 """
-CoreFlux Abstract Syntax Tree (AST) Design
+Xyndril Abstract Syntax Tree (AST) Design
 
-This module defines the Abstract Syntax Tree structure for the CoreFlux language.
+This module defines the Abstract Syntax Tree structure for the Xyndril language.
 Each node type represents a different syntactic element in the language.
 """
 
@@ -137,6 +137,6 @@ class RouteDefinition(Statement):
 # --- Programs ---
 
 class Program(Node):
-    """Represents a complete CoreFlux program"""
+    """Represents a complete Xyndril program"""
     def __init__(self, body):
         self.body = body  # List of statements

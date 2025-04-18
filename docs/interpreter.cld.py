@@ -1,7 +1,7 @@
 """
-CoreFlux Interpreter Design
+Xyndril Interpreter Design
 
-This module defines the interpreter for the CoreFlux language.
+This module defines the interpreter for the Xyndril language.
 The interpreter traverses the AST and executes the program.
 """
 
@@ -66,7 +66,7 @@ class ClassRegistry:
         return self.classes[name]
 
 class Interpreter:
-    """CoreFlux language interpreter"""
+    """Xyndril language interpreter"""
     def __init__(self):
         self.global_env = Environment()
         self.route_registry = RouteRegistry()
