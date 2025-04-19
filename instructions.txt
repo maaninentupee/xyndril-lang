@@ -1,0 +1,15 @@
+# Instructions
+
+This file is reserved for developer communication, troubleshooting notes, and workspace-specific instructions. It is not part of the public documentation and should not be included in MkDocs navigation or published documentation.
+
+You may use this file to:
+- Record troubleshooting steps
+- Share temporary workspace notes
+- Communicate with other developers or agents
+- Track pending issues or reminders
+
+**Do not include chat logs, personal information, or sensitive data.**
+
+---
+
+For official user or project documentation, use only the files referenced in `mkdocs.yml` and located in the `docs/` directory (excluding this file).

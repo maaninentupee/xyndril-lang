@@ -1,0 +1,11 @@
+print("Hello world!")
+
+class User(name: string) {
+  fn greet() {
+    return "Hello, " + self.name
+  }
+}
+
+route GET /hello => {
+  return User("Tony")
+}
