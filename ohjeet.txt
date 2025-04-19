@@ -1,41 +1,38 @@
-✅ Tarkistuslista agentille uudelleen:
-🟩 = Tarkistettava / tehtävä kohta
-✅ = Kaikki kunnossa
+📩 Agent Instructions: Add Email to Footer
 
-🟩 1. Onko parser_spec.md docs/-kansiossa?
-Komentorivillä varmista:
+🎯 Goal
+Make the contact email fusion@xyndril.dev visible in the documentation footer (not just as an icon).
 
+1️⃣ Update mkdocs.yml with visible footer email
+Add the following to the root of mkdocs.yml:
 
-ls docs/parser_spec.md
-Jos ei näy → kopioi tai siirrä:
+extra:
+  social:
+    - icon: fontawesome/solid/envelope
+      link: mailto:fusion@xyndril.dev
+      name: Contact: fusion@xyndril.dev
+Make sure the theme: section includes this:
 
+theme:
+  name: material
+  features:
+    - navigation.footer
+2️⃣ Confirm Theme Compatibility
+Ensure that the following requirements are met:
 
-cp design/parser_spec.md docs/
-🟩 2. Onko tiedosto lisätty mkdocs.yml-tiedoston nav:-osioon?
-Esimerkki:
-
-
-nav:
-  - Home: index.md
-  - Usage: usage.md
-  - Manifest: xyndril-manifest.md
-  - Parser Spec: parser_spec.md
-🔁 Jos parser_spec.md puuttuu tai osoittaa väärään polkuun, MkDocs ei sisällytä sitä dokumentaatioon.
-
-🟩 3. Onko linkit Markdown-tiedostoissa oikeassa muodossa?
-Vanha virheellinen:
-
-
-[parser_spec](../design/parser_spec.md)
-Oikea tapa:
-
-
-[parser_spec](parser_spec.md)
-🟩 4. Onko palvelin käynnistetty uudelleen muutosten jälkeen?
-Jos tiedostoa siirrettiin tai mkdocs.yml päivitettiin, aja:
-
+The Material for MkDocs theme is installed.
+FontAwesome icons are supported (required for fontawesome/solid/envelope).
+3️⃣ Preview Locally
+After updating mkdocs.yml, preview the site:
 
 mkdocs serve -a localhost:8001
+You should now see "Contact: fusion@xyndril.dev" as text (not just an icon) in the footer.
+
+
+
+
+
+
 
 
 

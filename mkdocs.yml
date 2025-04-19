@@ -12,11 +12,17 @@ theme:
     - navigation.expand
     - content.code.copy
     - content.action.edit
+    - navigation.footer
 
+extra:
+  social:
+    - icon: fontawesome/solid/envelope
+      link: mailto:fusion@xyndril.dev
+      name: "Contact: fusion@xyndril.dev"
 nav:
   - Home: index.md
-  - Usage: usage.md
-  - Language Design: language-spec.md
+  - Language Spec: language-spec.md
   - Parser Spec: parser_spec.md
+  - Usage Guide: usage.md
   - Workspace Setup: workspace-setup.md
-  - Manifest: xyndril-manifest.md
+  - Xyndril Manifest: xyndril-manifest.md

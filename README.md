@@ -1,73 +1,77 @@
 # 🚀 Xyndril
 
-Xyndril on kokeellinen full-stack-ohjelmointikieli, joka yhdistää modernin backendin, frontend-komponentit ja tekoälyn yhdeksi kieliytimeksi.
+Xyndril is an experimental full-stack programming language designed to unify modern backend, frontend components, and artificial intelligence into a single language core.
 
 ---
 
-## 🔧 Mitä tämä versio sisältää (v0.0.1)
+## 🔧 What's Included in This Version (v0.0.1)
 
-- `print()`-komento
-- Luokkien (`class`) määrittely
-- REST-rajapintojen (`route GET`) määrittely
-- Esimerkkitiedosto: `examples/hello.nx`
-- Yksinkertainen tokenizer, parseri ja runtime (Pythonilla)
+- `print()` command
+- Class (`class`) definitions
+- REST API route definitions (`route GET`)
+- Example file: `examples/hello.nx`
+- Simple tokenizer, parser, and runtime (in Python)
 
 ---
 
-## 🛠️ Suoritus
+## 🛠️ Running Xyndril
 
-Varmista, että sinulla on Python 3.9 tai uudempi asennettuna.
+Make sure you have Python 3.9 or newer installed.
 
-Aja ohjelma komentoriviltä:
+Run the program from the command line:
 
 ```bash
 python cli/xyndril.py examples/hello.nx
+```
 
-🧭 Tiekartta (v0.0.2+)
-🔜 ai.prompt(), ai.generate() – AI-komennot
-🔜 import – Tiedostojen tuonti
-🔜 Modulaarinen rakenne
-🔜 Valinnainen staattinen tyypitys
-🔜 REPL-tuki
+🧭 Roadmap (v0.0.2+)
+🔜 ai.prompt(), ai.generate() – AI commands
+🔜 import – File imports
+🔜 Modular structure
+🔜 Optional static typing
+🔜 REPL support
 
-📁 Projektirakenne
+📁 Project Structure
 xyndril-kit/
-├── cli/                 # CLI-käynnistysohjelma
+├── cli/                 # CLI launcher
 │   └── xyndril.py
-├── examples/            # Esimerkkiohjelmat (.nx)
+├── examples/            # Example programs (.nx)
 │   └── hello.nx
-├── parser/              # Tokenizer ja parser
+├── parser/              # Tokenizer and parser
 │   ├── tokenizer.py
 │   └── parser.py
-├── interpreter/         # Tulkki AST:n evaluointiin
+├── interpreter/         # Interpreter for AST evaluation
 │   └── runtime.py
-├── design/              # Clauden suunnittelutiedostot
+├── design/              # Claude design files
 │   ├── ast.cld.py
 │   ├── interpreter.cld.py
 │   └── parser_spec.md
 └── README.md
 
-💡 Miksi Xyndril?
-Nykyinen ohjelmointikehitys on hajautunutta eri kieliin:
+💡 Why Xyndril?
+Current software development is fragmented across different languages:
 
 👨‍💻 Backend (Python, Go...)
-🌐 Frontend-komponentit (JS, React...)
-🤖 Tekoäly (OpenAI, langchain...)
+🌐 Frontend components (JS, React...)
+🤖 Artificial Intelligence (OpenAI, langchain...)
 
-Xyndril yhdistää kaiken yhteen kieleen.
+Xyndril brings everything together in one language.
 
-Yksi kieli. Yksi projekti. Kaikki kerrokset.
+One language. One project. All layers.
 
-🧠 Filosofia
+---
+
+## 🧠 Philosophy
 "One language to rule every layer"
 
-Syntaksi: helppolukuinen, laajennettava
+- Syntax: readable, extensible
+- Type system: lightweight, optional
+- AI: built-in feature, not just a library
 
-Tyyppijärjestelmä: kevyt, valinnainen
+---
 
-Tekoäly: sisäänrakennettu ominaisuus, ei kirjasto
-
-🧪 Esimerkkikoodi
+## 🧪 Example Code
+```cf
 print("Hello world!")
 
 class User(name: string) {
@@ -79,23 +83,52 @@ class User(name: string) {
 route GET /hello => {
   return User("Tony").greet()
 }
+```
 
-🧩 Lisätietoja
-Design-tiedostot sijaitsevat design/-kansiossa ja sisältävät:
+---
 
-AST-määrittely: ast.cld.py
+## 🧭 Roadmap
+- ai.prompt(), ai.generate() – AI commands
+- import – File imports
+- Modular structure
+- Optional static typing
+- REPL support
 
-Interpreter-rakenne: interpreter.cld.py
+---
 
-Parser-kuvaus: parser_spec.md
+## 📁 Folder Structure
+```
+xyndril-kit/
+├── cli/                 # CLI launcher
+│   └── xyndril.py
+├── examples/            # Example programs (.nx)
+│   └── hello.nx
+├── parser/              # Tokenizer and parser
+│   ├── tokenizer.py
+│   └── parser.py
+├── interpreter/         # Interpreter for AST evaluation
+│   └── runtime.py
+├── design/              # Claude design files
+│   ├── ast.cld.py
+│   ├── interpreter.cld.py
+│   └── parser_spec.md
+└── README.md
+```
 
-Nämä tiedostot GPT refaktoroi tuotantokoodiksi:
+Design files in the `design/` folder include:
+- AST specification: ast.cld.py
+- Interpreter structure: interpreter.cld.py
+- Parser description: parser_spec.md
 
-src/ast.py
+These files are refactored by GPT into production code:
+- src/ast.py
+- src/interpreter.py
+- parser/xyndril.g4
+- src/repl.py (REPL support)
 
-src/interpreter.py
+---
 
-parser/xyndril.g4
+## 💡 Get Involved
+Ready to try Xyndril or contribute?
 
-src/repl.py (REPL-tuki)
-
+📩 Contact: fusion@xyndril.dev
