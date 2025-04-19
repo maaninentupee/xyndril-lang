@@ -1,3 +1,58 @@
+<!--
+📢 This project uses a GPT-4.1 agent for automated development and documentation.
+Do not modify this section unless you are updating the project’s core context.
+-->
+
+# 🧠 Project Context: Xyndril Programming Language
+
+Xyndril is a modern experimental full-stack programming language developed from the earlier CoreFlux prototype. It is designed to unify backend logic, frontend components, and AI capabilities into a single cohesive syntax and runtime.
+
+## 🌐 Project Goals
+
+- ✅ **Unified full-stack language**: One language to rule backend, frontend, and AI layers.
+- ✅ **AI-native syntax**: Includes `ai.prompt()` and `ai.generate()` built-in.
+- ✅ **REST API routing**: `route GET /example => {}` built into the language.
+- ✅ **Simple, readable syntax** with optional static typing.
+- ✅ **REPL & CLI support** for fast experimentation.
+- ✅ **GPT-assisted development** and documentation using `agent-guidelines.md`.
+
+## 📂 Repository Structure
+
+xyndril-kit/ ├── cli/ → CLI launcher (xyndril.py) ├── examples/ → Sample programs (.nx files) ├── parser/ → Parser and tokenizer logic ├── interpreter/ → Runtime interpreter for AST ├── src/ → Refactored production code ├── docs/ → Markdown documentation for GitHub Pages ├── docs/CNAME → Custom domain: www.xyndril.dev ├── xyndril-manifest.md → Official language philosophy & overview └── agent-guidelines.md → GPT-4.1 operating rules
+
+
+## 🌍 Public Site
+
+Xyndril documentation is published at:  
+🔗 [www.xyndril.dev](http://www.xyndril.dev)
+
+## 📩 Contact
+
+📬 **fusion@xyndril.dev**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 🧠 Agent Guidelines for Xyndril Documentation (MkDocs)
 
 This file provides persistent instructions for the GPT-4.1 agent working on this project. Do **not** delete, rename, or modify this file unless instructed.
