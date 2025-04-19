@@ -132,3 +132,9 @@ These files are refactored by GPT into production code:
 Ready to try Xyndril or contribute?
 
 📩 Contact: fusion@xyndril.dev
+
+---
+
+📘 This documentation is automatically maintained by a GPT-4.1 agent.
+📜 The agent strictly follows the [agent-guidelines.md](./xyndril-kit/agent-guidelines.md) instructions.
+📩 For contact or contributions, email: fusion@xyndril.dev
