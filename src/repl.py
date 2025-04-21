@@ -1,35 +1,43 @@
 # src/repl.py
 # Xyndril REPL (Read-Eval-Print Loop)
-from src.ast import *
-from src.interpreter import Interpreter
-
 import sys
 
 class DummyParser:
-    # Placeholder parser: expects user to type Python AST node creation code
+    """
+    Placeholder parser for Xyndril REPL. In a real implementation, this would parse Xyndril source code to an AST.
+    Currently, it uses Python's eval for demonstration.
+    """
     def parse(self, line):
-        # In oikea parseri, tämä muuntaisi Xyndril-kieltä AST:ksi
-        # Nyt vain eval Pythonilla testitarkoitukseen
-        return eval(line)
+        try:
+            return eval(line)
+        except Exception as e:
+            raise SyntaxError(f"Parse error: {e}")
+
+class DummyInterpreter:
+    """
+    Placeholder interpreter for Xyndril REPL. In a real implementation, this would evaluate AST nodes.
+    Currently, it just returns the node for demonstration.
+    """
+    def evaluate(self, node):
+        return node
 
 def main():
-    print("Xyndril REPL. Type AST node creation code. Ctrl+C to exit.")
-    interpreter = Interpreter()
+    print("Xyndril REPL. Type Xyndril code or AST node creation code. Ctrl+C or Ctrl+D to exit.")
+    interpreter = DummyInterpreter()
     parser = DummyParser()
-    env = None
     while True:
         try:
             line = input('> ')
             if not line.strip():
                 continue
             node = parser.parse(line)
-            result = interpreter.evaluate(node, env)
+            result = interpreter.evaluate(node)
             print(result)
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, EOFError):
             print("\nExiting REPL.")
             break
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error: {e}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()

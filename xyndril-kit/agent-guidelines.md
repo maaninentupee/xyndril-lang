@@ -1,3 +1,61 @@
+
+
+📋 Task Queue System (Autonomous Mode)
+🧠 This project uses a structured autonomous task file:
+📄 xyndril-kit/tasks.json
+
+GPT agents must always:
+
+Read tasks.json before performing any task
+
+Locate the first item with "status": "todo"
+
+Execute based on the title, description, and related_files
+
+Mark progress ("in_progress" → "done"), if allowed
+
+Skip or report "blocked" tasks
+
+✅ JSON Task Structure
+json
+Kopioi
+Muokkaa
+{
+  "id": "task-001",
+  "title": "Implement basic REPL",
+  "description": "Create REPL logic under src/repl.py",
+  "status": "todo",
+  "related_files": ["src/repl.py"]
+}
+status values: todo, in_progress, done, blocked
+
+Agents must not modify unrelated fields or reorder tasks
+
+Human developers may manually add or finish tasks if needed
+
+🚫 Manual Editing Warning
+Do not edit tasks.json manually unless:
+
+You're debugging
+
+You're adding a new task
+
+You're confirming a completed task for documentation
+
+📌 This file is critical for agent autonomy and must remain consistent.
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--
 📢 This project uses a GPT-4.1 agent for automated development and documentation.
 Do not modify this section unless you are updating the project’s core context.
@@ -169,3 +227,49 @@ mkdocs gh-deploy
 🔁 Repeat these steps for every documented version or published change.
 
 📌 Don’t forget to bump the version number and summarize the changes.
+
+
+## 📋 Task Queue System (Autonomous Mode)
+
+🧠 This project uses a structured autonomous task file:  
+📄 `xyndril-kit/tasks.json`
+
+GPT agents must always:
+
+- Read `tasks.json` before performing any task
+- Locate the first item with `"status": "todo"`
+- Execute based on the `title`, `description`, and `related_files`
+- Update task progress (`"in_progress"` → `"done"`), if allowed
+- Skip or report `"blocked"` tasks
+
+---
+
+### ✅ JSON Task Format
+
+```json
+{
+  "id": "task-001",
+  "title": "Implement basic REPL",
+  "description": "Create REPL logic under src/repl.py",
+  "status": "todo",
+  "related_files": ["src/repl.py"]
+}
+Valid status values:
+todo, in_progress, done, blocked
+
+Agents must not modify unrelated fields or reorder tasks
+
+Human developers may manually add or update tasks
+
+🚫 Manual Editing Warning
+Do not edit tasks.json manually unless:
+
+You're debugging
+
+You're adding a new task
+
+You're confirming a completed task for documentation
+
+📌 This file is critical for autonomous agent workflow and must remain consistent.
+---
+

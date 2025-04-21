@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "project": "Xyndril Programming Language",
+    "agent_version": "4.1",
+    "last_updated": "2025-04-20",
+    "instructions": "This file is read by the GPT agent to understand the current task queue. Tasks are defined in order of priority."
+  },
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Improve CLI launcher (xyndril.py)",
+      "description": "Add argument parsing for running .nx files directly via CLI, e.g., `xyndril run examples/hello.nx`.",
+      "status": "done",
+      "priority": 1,
+      "related_files": ["xyndril-kit/cli/xyndril.py"]
+    },
+    {
+      "id": "task-002",
+      "title": "Define REPL behavior",
+      "description": "Draft REPL interface logic in `src/repl.py`. This includes prompt loop, command execution, and session state.",
+      "status": "done",
+      "priority": 2,
+      "related_files": ["xyndril-kit/src/repl.py"]
+    },
+    {
+      "id": "task-003",
+      "title": "Add parser_spec.md to nav",
+      "description": "Make sure parser_spec.md is added to mkdocs.yml navigation.",
+      "status": "done",
+      "priority": 3,
+      "related_files": ["xyndril-kit/docs/parser_spec.md", "mkdocs.yml"]
+    }
+  ]
+}

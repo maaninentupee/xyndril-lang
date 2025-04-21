@@ -1,32 +1,100 @@
-📩 Agent Instructions: Add Email to Footer
+🧠 Editor Agent Execution Guide for Xyndril-lang
+Tämä ohjeistus pätee kaikkiin GPT-pohjaisiin agentteihin (esim. GPT-4.1, Claude 3, xAI Grok, o3/o4-mallit), jotka toimivat Windsurfin Cascade-editoriagentin kautta.
 
-🎯 Goal
-Make the contact email fusion@xyndril.dev visible in the documentation footer (not just as an icon).
+✅ 1. Aloita aina seuraavista tiedostoista
+Lue nämä tiedostot ennen tehtävien käsittelyä:
 
-1️⃣ Update mkdocs.yml with visible footer email
-Add the following to the root of mkdocs.yml:
 
-extra:
-  social:
-    - icon: fontawesome/solid/envelope
-      link: mailto:fusion@xyndril.dev
-      name: Contact: fusion@xyndril.dev
-Make sure the theme: section includes this:
+Tiedosto	Tarkoitus
+xyndril-kit/PROJECT_INTRO.md	Projektin konteksti ja rakenne
+xyndril-kit/agent-guidelines.md	Agentin toimintaohjeet
+xyndril-kit/tasks.json	Suoritettavat tehtävät
+xyndril-kit/tasks.template.json	Tehtävien muotoilumalli
+📋 2. Task Queue -käyttöohjeet (tasks.json)
+Lue xyndril-kit/tasks.json ennen jokaista tehtävää.
 
-theme:
-  name: material
-  features:
-    - navigation.footer
-2️⃣ Confirm Theme Compatibility
-Ensure that the following requirements are met:
+Agentin tulee:
 
-The Material for MkDocs theme is installed.
-FontAwesome icons are supported (required for fontawesome/solid/envelope).
-3️⃣ Preview Locally
-After updating mkdocs.yml, preview the site:
+Etsiä ensimmäinen "status": "todo"-tehtävä
 
-mkdocs serve -a localhost:8001
-You should now see "Contact: fusion@xyndril.dev" as text (not just an icon) in the footer.
+Analysoida title, description, ja related_files
+
+Suorittaa tehtävä vain annettujen tiedostojen pohjalta
+
+Päivittää status: "in_progress" → "done"
+
+Hypätä yli "blocked"-tehtävät
+
+🔁 Tämä prosessi toistetaan, kunnes tehtävälista on tyhjä tai kaikki tehtävät on merkitty muuksi kuin "todo".
+
+🧰 3. Tiedostojen käsittelyalueet
+
+Hakemisto	Tarkoitus
+src/	AST, interpreter ja REPL
+parser/	Tokenizer ja parserin logiikka
+interpreter/	Runtime (ei päällekkäin src/interpreter.py:n kanssa)
+docs/	Markdown-dokumentaatio MkDocsille
+docs_sphinx/	Erillinen Sphinx-build
+examples/	.nx-koodiesimerkit
+xyndril-kit/	Agentin ohjeet ja tehtävärakenteet
+Esimerkki:
+Älä tee muutoksia parser/-kansioon, ellei tasks.json osoita sinne tehtävää. Kaikki muokkaukset dokumentoidaan CHANGELOG.md-tiedostoon.
+
+🧠 4. Projektin nykytila (snapshotista)
+
+Komponentti	Tila
+Tokenizer	✅ Valmis
+Parser	⚠️ Vain skeleton, AST-rakenne puuttuu
+AST	✅ Valmis
+Interpreter	✅ Toimiva
+REPL	🧪 Basic toteutus src/repl.py, placeholder xyndril-kit/src/repl.py
+Dokumentaatio	✅ Laaja
+Server	❌ Ei olemassa
+Testit	❌ Ei testejä tai test/-kansiota
+Tools	🚧 Tyhjä hakemisto
+🚧 5. Tehtävien esimerkkejä tasks.json
+json
+Kopioi
+Muokkaa
+{
+  "task_id": "parser_ast_completion",
+  "description": "Complete full AST parsing in parser/parser.py according to parser_spec.md",
+  "input_files": ["parser/parser.py", "docs/parser_spec.md", "src/ast.py"],
+  "output_files": ["parser/parser.py"],
+  "status": "todo"
+}
+🔐 6. Sääntöjä agentille
+Älä koskaan:
+
+Muokkaa README.md, PROJECT_INTRO.md tai agent-guidelines.md ilman tehtävää
+
+Kirjoita muihin hakemistoihin kuin tehtävässä määriteltyihin
+
+Kirjaa muutos aina CHANGELOG.md
+
+Varmista, että tehtävän vaikutus ei riko olemassa olevaa rakennetta
+
+🚀 7. Automaattinen ajaminen (tulevaisuudessa)
+Tuleva run_editor_agent.py voi:
+
+Ladata tasks.json
+
+Antaa jokaisen tehtävän agentin käsittelyyn
+
+Välittää input_files, output_files ja description
+
+Päivittää tehtävän tilan
+
+📦 8. Muuta huomioitavaa
+README-agent.txt, ohjeet.txt, raportti.md ja tasks.json on jätetty .gitignore-tiedostoon
+
+Agentti saa käsitellä vain tiedostoja, jotka eivät ole ignored, ellei toisin ohjeisteta
+
+Agentin toiminta on kielimalliriippumaton, kunhan noudattaa tätä rakennetta
+
+
+
+
 
 
 
