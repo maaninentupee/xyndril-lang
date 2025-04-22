@@ -2,8 +2,8 @@
   "metadata": {
     "project": "Xyndril Programming Language",
     "agent_version": "4.1",
-    "last_updated": "2025-04-20",
-    "instructions": "This file is read by the GPT agent to understand the current task queue. Tasks are defined in order of priority."
+    "last_updated": "2025-04-22",
+    "instructions": "This file is read by the agent to understand the current task queue. Tasks are defined in order of priority."
   },
   "tasks": [
     {
@@ -12,7 +12,7 @@
       "description": "Add argument parsing for running .nx files directly via CLI, e.g., `xyndril run examples/hello.nx`.",
       "status": "done",
       "priority": 1,
-      "related_files": ["xyndril-kit/cli/xyndril.py"]
+      "related_files": ["cli/xyndril.py"]
     },
     {
       "id": "task-002",
@@ -20,7 +20,7 @@
       "description": "Draft REPL interface logic in `src/repl.py`. This includes prompt loop, command execution, and session state.",
       "status": "done",
       "priority": 2,
-      "related_files": ["xyndril-kit/src/repl.py"]
+      "related_files": ["src/repl.py"]
     },
     {
       "id": "task-003",
@@ -28,7 +28,55 @@
       "description": "Make sure parser_spec.md is added to mkdocs.yml navigation.",
       "status": "done",
       "priority": 3,
-      "related_files": ["xyndril-kit/docs/parser_spec.md", "mkdocs.yml"]
+      "related_files": ["docs/parser_spec.md", "mkdocs.yml"]
+    },
+    {
+      "id": "task-004",
+      "title": "Implement basic parser",
+      "description": "Create a basic parser in `parser/parser.py` that can parse simple expressions using the grammar defined in `xyndril.g4`.",
+      "status": "todo",
+      "priority": 4,
+      "related_files": ["parser/parser.py", "docs/xyndril.g4"]
+    },
+    {
+      "id": "task-005",
+      "title": "Expand parser.py to AST structure",
+      "description": "Extend the parser in `parser/parser.py` to build an AST structure aligned with `src/ast.py`. Ensure the parser generates nodes for basic expressions.",
+      "status": "todo",
+      "priority": 5,
+      "related_files": ["parser/parser.py", "src/ast.py"]
+    },
+    {
+      "id": "task-006",
+      "title": "Sync parser_spec.md with parser logic",
+      "description": "Update `docs/parser_spec.md` to reflect the current parser logic in `parser/parser.py`, including AST generation details.",
+      "status": "todo",
+      "priority": 6,
+      "related_files": ["docs/parser_spec.md", "parser/parser.py"]
+    },
+    {
+      "id": "task-007",
+      "title": "Create tests for parser and interpreter",
+      "description": "Write unit tests in `test/parser/test_parser.py` for the parser and in `test/interpreter/test_interpreter.py` for the interpreter. Use unittest or pytest.",
+      "status": "todo",
+      "priority": 7,
+      "related_files": ["test/parser/test_parser.py", "test/interpreter/test_interpreter.py"]
+    },
+    {
+      "id": "task-008",
+      "title": "Complete REPL to match parser structure",
+      "description": "Update `src/repl.py` to integrate with the new parser and AST structure. Ensure REPL can execute simple expressions parsed into AST nodes.",
+      "status": "todo",
+      "priority": 8,
+      "related_files": ["src/repl.py", "parser/parser.py", "src/ast.py"]
+    },
+    {
+      "id": "task-009",
+      "title": "Create server.py draft or plan",
+      "description": "Draft a basic `server.py` in `server/` directory to serve as a foundation for a language server or runtime. Alternatively, create a plan in `server/README.md`.",
+      "status": "todo",
+      "priority": 9,
+      "related_files": ["server/server.py", "server/README.md"]
     }
   ]
 }
