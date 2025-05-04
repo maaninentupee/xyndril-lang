@@ -1,5 +1,153 @@
 # Xyndril Parser Specification
 
+## Overview
+This document describes the design and logic of the Xyndril parser, implemented in `parser/parser.py` and defined by the ANTLR grammar (`xyndril.g4`).
+
+## Polyglot & Interoperability
+The Xyndril parser and AST are designed for extensibility and interoperability:
+- The grammar is modular and can be extended to support new language constructs or foreign language embeddings.
+- AST nodes support hybrid constructs, allowing foreign function calls and type representations.
+- The parser is not monolithic; it is built to be embedded in polyglot runtimes and to parse/translate hybrid code that mixes Xyndril with other languages.
+- Future extensions will include grammar rules for foreign language blocks, imports, and interop expressions (e.g., `py:math.sqrt(16)` or embedding JavaScript blocks).
+
+This enables Xyndril to serve as a bridge language in multi-language projects, supporting seamless integration with Python, JavaScript, and other ecosystems.
+
+## Parser Logic
+The parser processes Xyndril source code as a sequence of statements and expressions, producing a structured AST for interpretation. Key features:
+
+### Supported Statements and Constructs
+- **Variable Declarations**: `let x = 42;`, `let y: Number;`, `let a = 1, b: Number = 2;`
+- **Assignments**: `x = 42;`
+- **If Statements**: `if (cond) { ... } else { ... }`
+- **Return Statements**: `return;`, `return value;`
+- **Class Declarations**: `class User { ... }`
+- **Arrow Functions**: `(a, b) => a + b;`
+- **REST Routes**: `route GET /users { ... }`
+- **Expression Statements**: Any valid expression followed by `;`
+
+### Expressions
+- **Literals**: Numbers, strings, booleans, null
+- **Identifiers**: Variable and function names
+- **Binary Operations**: `+`, `-`, `*`, `/`, `==`, `!=`, `<`, `<=`, `>`, `>=`, `&&`, `||`
+- **Unary Operations**: `-a`, `!a`
+- **Function Calls**: `foo(1, 2)`, `obj.method(arg)`
+- **Member Access**: `user.name`, `array[0]`
+- **Parentheses**: For grouping
+- **Arrow Functions**: `(x, y) => x + y`
+
+### Grammar Structure (ANTLR excerpt)
+```
+program: statement* EOF;
+
+statement
+    : letStatement
+    | assignmentStatement
+    | ifStatement
+    | classDeclaration
+    | routeDefinition
+    | expressionStatement
+    ;
+
+letStatement: 'let' identifier (':' typeName)? ('=' expression)? (',' identifier (':' typeName)? ('=' expression)?)* ';';
+assignmentStatement: identifier '=' expression;
+ifStatement: 'if' '(' expression ')' block ('else' (block | ifStatement))?;
+classDeclaration: 'class' identifier classBody;
+routeDefinition: 'route' httpMethod pathPattern block;
+expressionStatement: expression ';';
+```
+
+### AST Structure
+The parser produces the following AST node types (see `src/ast.py`):
+- `Program`
+- `LetStatement`, `Assignment`, `IfStatement`, `ReturnStatement`, `ClassDeclaration`, `RouteDefinition`, `ExpressionStatement`
+- `Literal`, `Identifier`, `BinaryOperation`, `UnaryOperation`, `FunctionCall`, `MemberExpression`, `ArrowFunction`
+- `BlockStatement`, `PropertyDefinition`, `MethodDefinition`, `Parameter`
+
+#### Example AST (for `let x = (1 + 2) * y;`):
+```
+LetStatement(
+  identifier=Identifier('x'),
+  initializer=BinaryOperation(
+    operator='*',
+    left=BinaryOperation('+', Literal(1), Literal(2)),
+    right=Identifier('y')
+  )
+)
+```
+
+### Error Handling
+The parser uses a custom `SyntaxErrorListener` for immediate, informative syntax errors (e.g., missing semicolons, invalid tokens, mismatched types).
+
+## Example
+Input:
+```xyndril
+let x = 42;
+let y = (x + 10) * 2;
+if (y > 100) {
+  print("Large!");
+} else {
+  print("Small!");
+}
+```
+AST (pseudocode):
+- Program
+  - LetStatement(x, Literal(42))
+  - LetStatement(y, BinaryOperation('*', BinaryOperation('+', Identifier(x), Literal(10)), Literal(2)))
+  - IfStatement(
+      test=BinaryOperation('>', Identifier(y), Literal(100)),
+      consequent=BlockStatement([...]),
+      alternate=BlockStatement([...])
+    )
+
+## Future Extensions
+- Loops (`while`, `for`)
+- User-defined functions
+- Pattern matching
+- Modules and imports
+- Enhanced error diagnostics
+
+## Synchronization Checklist
+- [ ] Grammar (`xyndril.g4`) matches this specification
+- [ ] AST (`src/ast.py`) supports all constructs
+- [ ] Interpreter supports all grammar constructs
+- [ ] Tests cover all features and edge cases
+- [ ] Documentation (this & language-spec.md) up to date
+
+## Overview
+This document specifies the design and logic of the Xyndril language parser, implemented in `parser/parser.py`. The parser uses an ANTLR-based grammar (`xyndril.g4`) to parse expressions and constructs an Abstract Syntax Tree (AST) aligned with `src/ast.py`.
+
+## Parser Logic
+The parser processes input expressions and builds an AST for evaluation by the interpreter (`src/interpreter.py`). It supports the following features:
+
+### Supported Expressions
+- **Number Literals**: Parses numeric values (e.g., `42`, `3.14`) into `NumberNode` objects.
+- **Arithmetic Operations**:
+  - Addition (`+`) and Subtraction (`-`): Supported as binary operations (e.g., `10 + 20`, `30 - 15`).
+  - Multiplication (`*`) and Division (`/`): Supported as binary operations (e.g., `5 * 2`, `10 / 2`).
+  - Operations are represented as `BinOpNode` objects in the AST.
+- **Parentheses**: Supports nested expressions using parentheses (e.g., `(42 + 10) * 2`).
+
+### AST Structure
+The parser generates an AST using the following node types (defined in `src/ast.py`):
+- `NumberNode`: Represents a numeric literal (e.g., `42` → `NumberNode(42.0)`).
+- `BinOpNode`: Represents a binary operation with an operator (`+`, `-`, `*`, `/`), left operand, and right operand (e.g., `10 + 20` → `BinOpNode('+', NumberNode(10.0), NumberNode(20.0))`).
+
+### Error Handling
+- The parser uses a custom `SyntaxErrorListener` to raise exceptions on syntax errors, providing detailed error messages (e.g., "Syntax error at line 1:5 - missing ';'").
+
+## Example
+Input: `(42 + 10) * 2`
+- The parser generates an AST:
+  - Root: `BinOpNode('*', ..., ...)`
+  - Left: `BinOpNode('+', NumberNode(42.0), NumberNode(10.0))`
+  - Right: `NumberNode(2.0)`
+
+## Future Extensions
+- Support for variables and assignments (e.g., `x = 42`).
+- Support for control structures (e.g., `if`, `while`).
+- Enhanced error reporting with suggestions.
+
+
 This document specifies the syntax for the Xyndril language and how the parser should recognize language constructs.
 
 ## 1. General Syntax
