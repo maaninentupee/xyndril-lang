@@ -11,19 +11,22 @@ class Expression(Node):
     pass
 
 class Literal(Expression):
-    def __init__(self, value, type_name):
+    def __init__(self, value):
         self.value = value
-        self.type_name = type_name
+    def __repr__(self):
+        return f"Literal({self.value})"
 
 class Identifier(Expression):
     def __init__(self, name):
         self.name = name
 
 class BinaryOperation(Expression):
-    def __init__(self, left, operator, right):
-        self.left = left
+    def __init__(self, operator, left, right):
         self.operator = operator
+        self.left = left
         self.right = right
+    def __repr__(self):
+        return f"BinaryOperation('{self.operator}', {self.left}, {self.right})"
 
 class UnaryOperation(Expression):
     def __init__(self, operator, expression):
@@ -116,3 +119,18 @@ class RouteDefinition(Statement):
 class Program(Node):
     def __init__(self, body):
         self.body = body
+
+class Variable(Expression):
+    """Represents a variable reference in the AST"""
+    def __init__(self, name):
+        self.name = name
+    def __repr__(self):
+        return f"Variable('{self.name}')"
+
+class Assignment(Expression):
+    """Represents an assignment in the AST (e.g., x = 42)"""
+    def __init__(self, name, value):
+        self.name = name  # Variable name (string)
+        self.value = value  # Expression node (e.g., Literal)
+    def __repr__(self):
+        return f"Assignment('{self.name}', {self.value})"

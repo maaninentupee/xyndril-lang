@@ -66,7 +66,7 @@ Do not modify this section unless you are updating the project’s core context.
 👉 **IMPORTANT for GPT Agents:**  
 Start with `PROJECT_INTRO.md` in `xyndril-kit/` as the primary onboarding file before doing anything else.
 
-Xyndril is a modern experimental full-stack programming language developed from the earlier CoreFlux prototype. It is designed to unify backend logic, frontend components, and AI capabilities into a single cohesive syntax and runtime.
+Xyndril is a modern experimental full-stack programming language developed from the earlier Xyndril prototype. It is designed to unify backend logic, frontend components, and AI capabilities into a single cohesive syntax and runtime.
 
 ## 🌐 Project Goals
 
