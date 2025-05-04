@@ -4,7 +4,7 @@
 
 **Xyndril** is an experimental full-stack programming language designed to unify frontend, backend, and AI logic into a seamless development experience.
 
-Unlike traditional stacks where developers must switch between multiple languages and tools (JavaScript, Python, OpenAI SDKs), Xyndril proposes a **single-language architecture** that eliminates friction between layers.
+Unlike traditional stacks where developers must switch between multiple languages and tools (JavaScript, Python, OpenAI SDKs), Xyndril proposes a **polyglot-compatible architecture**: Xyndril is designed to work seamlessly with other languages and tools, eliminating friction between layers and enabling true interoperability.
 
 ---
 
