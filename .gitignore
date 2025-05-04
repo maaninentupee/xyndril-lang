@@ -1,8 +1,23 @@
-site/
+# Temporary and local agent files
 ohjeet.txt
 raportti.md
-xyndril-kit/tasks.json
 README-agent.txt
+xyndril-kit/tasks.json
 
-# windsurf rules
+# Local development or build output (e.g., HTML or PDF exports)
+site/
+
+# Windsurf agent rule file (local use only)
 .windsurfrules
+
+# Python cache and ANTLR-generated files
+__pycache__/
+*.interp
+*.tokens
+*.log
+
+# Editor-specific directories
+.vscode/
+.sonarlint/
+.github/
+
