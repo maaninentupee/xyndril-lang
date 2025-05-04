@@ -1,33 +1,130 @@
-# Xyndril-kit: Agent Execution Report
+Xyndril Manifest (Technical Vision)
+✨ What is Xyndril?
+Xyndril is an experimental full-stack programming language designed to unify frontend, backend, and AI logic into a seamless development experience.
 
-## Summary of ohjeet.txt instructions
+Unlike traditional stacks where developers must switch between multiple languages and tools (JavaScript, Python, OpenAI SDKs), Xyndril proposes a polyglot-compatible architecture: it is designed to work alongside other languages and tools, eliminating friction between layers while enabling optional unification through a shared syntax.
 
-1. **Start from Key Files**: Always read `PROJECT_INTRO.md`, `agent-guidelines.md`, `tasks.json`, and `tasks.template.json` before handling any tasks.
-2. **Task Handling**: Only process files listed in the task's `input_files` and `output_files`. Update task status from `todo` → `in_progress` → `done`. Skip `blocked` tasks. Repeat until all tasks are processed.
-3. **File Handling Rules**: Do not modify files or directories not specified in the task. All changes must be documented in `CHANGELOG.md`. Never modify `README.md`, `PROJECT_INTRO.md`, or `agent-guidelines.md` unless instructed by a task.
-4. **SonarLint Integration**: Automatically detect and fix issues flagged by SonarLint, such as unused imports or incorrect type definitions, before saving or committing code.
-5. **Language Policy**: All code, variable names, error messages, logs, and comments must be in English. Communication with the user is in English unless the user explicitly requests otherwise (e.g., “puhu suomeksi”).
-6. **Version Control**: Always perform `git pull` before edits, and commit & push after changes to keep both Windsurf and VS Code environments synchronized.
-7. **Other Notes**: Files like `README-agent.txt`, `ohjeet.txt`, `raportti.md`, and `tasks.json` are in `.gitignore` and can be handled freely by the agent.
+🔠 Philosophy
+"One language to rule every layer — when you want it to"
 
-## Implementation Status
-- The instructions in `ohjeet.txt` have been read and understood.
-- No tasks have been executed yet; this report summarizes the operational guide.
-- The agent will follow the above rules for all future actions in this project.
+Readable and extensible syntax
 
----
+Lightweight typing with optional static types
 
-## Correction and Explanation
+AI features embedded into the language core
 
-The previous version of this report was incomplete and did not follow the full instructions of `ohjeet.txt`. According to the guide, the agent should:
-- Read `tasks.json` and find the first task with status `"todo"`.
-- Analyze and execute that task using only the specified files.
-- Update the task status and document all changes.
+Native support for API routing and UI components
 
-In the previous step, I only summarized the instructions and did not process any actual tasks. This was a mistake and not in line with the workflow described in `ohjeet.txt`.
+Interop-first mindset: Xyndril can both stand alone or integrate with your existing stack
 
-**Next steps:**
-- I will now proceed to read `tasks.json`, find the first `todo` task, and execute it according to the instructions.
-- After executing the task, I will update this report to reflect the actions taken.
+💡 Key Differentiators
+Feature	Xyndril	Other Languages
+Full-stack support	✅ Unified syntax, optional adoption	❌ Separated frontend/backend
+AI integration	✅ Native syntax-level support	❌ External libs required
+REST routes	✅ Built-in routing	❌ Defined in frameworks
+UI components	✅ (Planned) as native syntax	❌ Framework-dependent
+Interop support	✅ Designed for multi-language use	⚠️ Often secondary concern
 
-*This correction was added to comply with the project guidelines and to transparently document the mistake and the plan to fix it.*
+🚀 Version 0.0.1 Features
+print() command
+
+class keyword for defining objects
+
+fn for methods
+
+route GET /path => { ... } — native REST routing
+
+let statements
+
+Arrow functions: let add = (a, b) => a + b
+
+Conditional logic with if/else
+
+✨ AI Command: ai.prompt("...") (planned v0.0.2)
+
+🔢 Syntax Example
+cf
+Kopioi
+Muokkaa
+// Class definition
+class User {
+  name: String
+  email: String
+  age: Number
+
+  constructor(name, email, age) {
+    this.name = name
+    this.email = email
+    this.age = age
+  }
+
+  greet() -> String {
+    return "Hello, I'm ${this.name}!"
+  }
+
+  route GET /user/:id {
+    return this
+  }
+}
+
+// Functional style
+let double = (x: Number) -> Number => x * 2
+let add = (a, b) => a + b
+
+// Conditional logic
+if (user.age >= 18) {
+  console.log("Adult")
+} else {
+  console.log("Minor")
+}
+
+// Higher-order functions
+let adults = users
+  .filter(user => user.age >= 18)
+  .map(user => user.name)
+🚧 Runtime Architecture (Planned)
+Memory Management:
+Static analysis of variables at compile time
+
+Stack allocation for primitives
+
+Heap with generational GC for complex types
+
+Region-based memory zones for task-specific speed
+
+Garbage Collection Strategy:
+Generational GC
+
+Concurrent execution
+
+Incremental marking
+
+Region-based optimization
+
+State Synchronization:
+Realtime sync between client and server
+
+Reactive dataflow model planned
+
+🌍 Vision
+Xyndril is not just a new syntax. It is an attempt to create a cohesive, AI-native programming world where API logic, UI elements, and AI behavior can all be expressed in one language — without excluding others.
+
+One language. Unified syntax. Interoperable by design.
+
+Xyndril empowers developers to choose how deeply they adopt it: as a single-language full-stack platform, a language for AI agent workflows, or a flexible interop layer alongside existing systems.
+
+📚 Technical Spec Roadmap
+Design Files (Claude)	Refactored Code (GPT)
+design/ast.cld.py	→ src/ast.py
+design/interpreter.cld.py	→ src/interpreter.py
+design/parser_spec.md	→ parser/xyndril.g4
+(REPL Design)	→ src/repl.py
+
+Design files are used as a planning layer, and refactoring is done by GPT for final integration into the compiler.
+
+🔍 See Also
+GitHub Repository
+
+📖 See the full project overview in the README on GitHub
+
+
