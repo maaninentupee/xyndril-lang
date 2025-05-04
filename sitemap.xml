@@ -2,26 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://maaninentupee.github.io/xyndril-lang/</loc>
-         <lastmod>2025-04-19</lastmod>
+         <lastmod>2025-05-04</lastmod>
     </url>
     <url>
          <loc>https://maaninentupee.github.io/xyndril-lang/language-spec/</loc>
-         <lastmod>2025-04-19</lastmod>
+         <lastmod>2025-05-04</lastmod>
     </url>
     <url>
          <loc>https://maaninentupee.github.io/xyndril-lang/parser_spec/</loc>
-         <lastmod>2025-04-19</lastmod>
+         <lastmod>2025-05-04</lastmod>
+    </url>
+    <url>
+         <loc>https://maaninentupee.github.io/xyndril-lang/project-status/</loc>
+         <lastmod>2025-05-04</lastmod>
+    </url>
+    <url>
+         <loc>https://maaninentupee.github.io/xyndril-lang/project-structure/</loc>
+         <lastmod>2025-05-04</lastmod>
     </url>
     <url>
          <loc>https://maaninentupee.github.io/xyndril-lang/usage/</loc>
-         <lastmod>2025-04-19</lastmod>
+         <lastmod>2025-05-04</lastmod>
     </url>
     <url>
          <loc>https://maaninentupee.github.io/xyndril-lang/workspace-setup/</loc>
-         <lastmod>2025-04-19</lastmod>
+         <lastmod>2025-05-04</lastmod>
     </url>
     <url>
          <loc>https://maaninentupee.github.io/xyndril-lang/xyndril-manifest/</loc>
-         <lastmod>2025-04-19</lastmod>
+         <lastmod>2025-05-04</lastmod>
     </url>
 </urlset>
