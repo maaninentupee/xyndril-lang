@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # --- Koodi & Python ---
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -24,29 +25,42 @@ jobs:
         python -m pip install --upgrade pip
         pip install antlr4-python3-runtime
 
+    # --- ANTLR 4.13.2 + Java ---
+    - name: Install ANTLR 4.13.2
+      run: |
+        sudo apt-get update && sudo apt-get install -y openjdk-17-jre-headless unzip
+        curl -sSLo antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+        sudo mv antlr-4.13.2-complete.jar /usr/local/lib/
+        echo '#!/usr/bin/env bash
+java -jar /usr/local/lib/antlr-4.13.2-complete.jar "$@"' | sudo tee /usr/local/bin/antlr4 > /dev/null
+        sudo chmod +x /usr/local/bin/antlr4
+        echo 'CLASSPATH=.:/usr/local/lib/antlr-4.13.2-complete.jar:$CLASSPATH' >> $GITHUB_ENV
+
     # --- SonarScanner CLI + token ---
     - name: Install SonarScanner CLI
       env:
-        SCAN_VER: 6.0.0.4432       # helppo päivittää jatkossa
+        SCAN_VER: 6.0.0.4432
       run: |
         curl -f -L -o sonar-scanner.zip \
           https://repo1.maven.org/maven2/org/sonarsource/scanner/cli/sonar-scanner-cli/${SCAN_VER}/sonar-scanner-cli-${SCAN_VER}-linux.zip
-        sudo apt-get update && sudo apt-get install -y unzip
         unzip sonar-scanner.zip -d sonar-scanner
         echo "$(pwd)/sonar-scanner/bin" >> $GITHUB_PATH
 
+    # --- ANTLR-generointi ---
     - name: Generate ANTLR parser & lexer
       run: |
         cd parser
         antlr4 -Dlanguage=Python3 xyndril.g4
 
+    # --- Yksikkötestit ---
     - name: Run unit tests
       run: |
         python3 -m unittest discover test
 
+    # --- Sonar-analyysi ---
     - name: Run SonarScanner analysis
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # <- tässä token tulee käyttöön
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         sonar-scanner \
           -Dsonar.projectKey=xyndril \
