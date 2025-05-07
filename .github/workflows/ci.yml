@@ -11,21 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # --- Koodi & Python ---
+    # --- Checkout ---
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # --- Python setup ---
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
 
-    - name: Install Python deps
+    - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install antlr4-python3-runtime
 
-    # --- ANTLR 4.13.2 + Java ---
+    # --- ANTLR 4.13.2 ---
     - name: Install ANTLR 4.13.2
       run: |
         sudo apt-get update && sudo apt-get install -y openjdk-17-jre-headless unzip
@@ -35,7 +36,7 @@ jobs:
         sudo chmod +x /usr/local/bin/antlr4
         echo 'CLASSPATH=.:/usr/local/lib/antlr-4.13.2-complete.jar:$CLASSPATH' >> $GITHUB_ENV
 
-    # --- SonarScanner CLI + token ---
+    # --- SonarScanner CLI ---
     - name: Install SonarScanner CLI
       env:
         SCAN_VER: 6.0.0.4432
@@ -43,20 +44,20 @@ jobs:
         curl -f -L -o sonar-scanner.zip \
           https://repo1.maven.org/maven2/org/sonarsource/scanner/cli/sonar-scanner-cli/${SCAN_VER}/sonar-scanner-cli-${SCAN_VER}-linux.zip
         unzip sonar-scanner.zip -d sonar-scanner
-        echo "$(pwd)/sonar-scanner/bin" >> $GITHUB_PATH
+        echo "$PWD/sonar-scanner/sonar-scanner-${SCAN_VER}-linux/bin" >> $GITHUB_PATH
 
-    # --- ANTLR-generointi ---
+    # --- ANTLR generointi ---
     - name: Generate ANTLR parser & lexer
       run: |
         cd parser
         antlr4 -Dlanguage=Python3 xyndril.g4
 
-    # --- Yksikkötestit ---
+    # --- Testaus ---
     - name: Run unit tests
       run: |
         python3 -m unittest discover test
 
-    # --- Sonar-analyysi ---
+    # --- SonarCloud-analyysi ---
     - name: Run SonarScanner analysis
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -66,6 +67,7 @@ jobs:
           -Dsonar.sources=. \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.token=$SONAR_TOKEN
+
 
 
 
