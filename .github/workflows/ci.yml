@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install antlr4-python3-runtime unittest sonarlint-cli
+        pip install antlr4-python3-runtime sonarlint-cli
 
     - name: Generate ANTLR parser and lexer
       run: |
