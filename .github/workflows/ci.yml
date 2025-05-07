@@ -31,8 +31,7 @@ jobs:
         sudo apt-get update && sudo apt-get install -y openjdk-17-jre-headless unzip
         curl -sSLo antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
         sudo mv antlr-4.13.2-complete.jar /usr/local/lib/
-        echo '#!/usr/bin/env bash
-java -jar /usr/local/lib/antlr-4.13.2-complete.jar "$@"' | sudo tee /usr/local/bin/antlr4 > /dev/null
+        printf '#!/usr/bin/env bash\njava -jar /usr/local/lib/antlr-4.13.2-complete.jar "$@"\n' | sudo tee /usr/local/bin/antlr4 > /dev/null
         sudo chmod +x /usr/local/bin/antlr4
         echo 'CLASSPATH=.:/usr/local/lib/antlr-4.13.2-complete.jar:$CLASSPATH' >> $GITHUB_ENV
 
@@ -67,6 +66,7 @@ java -jar /usr/local/lib/antlr-4.13.2-complete.jar "$@"' | sudo tee /usr/local/b
           -Dsonar.sources=. \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.token=$SONAR_TOKEN
+
 
 
 
