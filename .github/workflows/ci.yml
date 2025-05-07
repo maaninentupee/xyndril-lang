@@ -27,6 +27,10 @@ jobs:
     - name: Install SonarLint CLI
       run: |
         curl -o sonarlint-cli.zip -L https://binaries.sonarsource.com/SonarLint-cli/SonarLint-cli-4.5.0.20627.zip
+        if [ ! -s sonarlint-cli.zip ]; then
+          echo "SonarLint CLI zip download failed or is empty."
+          exit 1
+        fi
         unzip sonarlint-cli.zip -d sonarlint-cli
         echo "$(pwd)/sonarlint-cli/bin" >> $GITHUB_PATH
 
@@ -42,4 +46,5 @@ jobs:
     - name: Run SonarLint analysis
       run: |
         sonarlint-cli --src "**/*.py" --tests "test/**" --reports sonarlint-report.json
+
 
