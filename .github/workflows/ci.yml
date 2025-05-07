@@ -26,11 +26,23 @@ jobs:
 
     - name: Install SonarLint CLI
       run: |
-        curl -o sonarlint-cli.zip -L https://binaries.sonarsource.com/SonarLint-cli/SonarLint-cli-4.5.0.20627.zip
+        for i in {1..3}; do
+          echo "Attempt $i: Downloading SonarLint CLI..."
+          curl -o sonarlint-cli.zip -L https://binaries.sonarsource.com/SonarLint-cli/SonarLint-cli-4.5.0.20627.zip
+          if [ -s sonarlint-cli.zip ]; then
+            echo "SonarLint CLI zip downloaded successfully."
+            break
+          else
+            echo "SonarLint CLI zip download failed. Retrying ($i/3)..."
+            sleep 5
+          fi
+        done
+
         if [ ! -s sonarlint-cli.zip ]; then
-          echo "SonarLint CLI zip download failed or is empty."
+          echo "SonarLint CLI zip download failed after 3 attempts."
           exit 1
         fi
+
         unzip sonarlint-cli.zip -d sonarlint-cli
         echo "$(pwd)/sonarlint-cli/bin" >> $GITHUB_PATH
 
@@ -46,5 +58,6 @@ jobs:
     - name: Run SonarLint analysis
       run: |
         sonarlint-cli --src "**/*.py" --tests "test/**" --reports sonarlint-report.json
+
 
 
