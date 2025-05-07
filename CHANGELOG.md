@@ -1,5 +1,10 @@
 # CHANGELOG
 
+2025-04-24
+ Toteutettu REPL (run_editor_agent.py), joka tukee aritmeettisia lausekkeita, muuttujia ja määrittelyjä.
+
+ Päivitetty dokumentaatio REPL:n osalta (language-spec.md).
+
 2025-04-23
 Laajennettu testejä kattamaan muuttujat ja määrittelyt.
 

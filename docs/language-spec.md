@@ -117,6 +117,29 @@ if (y > 100) {
 }
 ```
 
+## REPL (Read-Eval-Print Loop)
+- **Overview**: Xyndril-lang provides an interactive REPL for evaluating statements.
+- **Usage**: Run `python3 run_editor_agent.py` to start the REPL.
+- **Features**:
+  - Evaluates arithmetic expressions, variables, and assignments.
+  - Displays results or error messages for each input.
+  - Type `exit` to quit the REPL.
+- **Example Session**:
+
+xyndril> 42;
+  42.0
+xyndril> x = 10;
+  10.0
+xyndril> x;
+  10.0
+xyndril> (x + 20) * 2;
+  60.0
+xyndril> y;
+  Error: Undefined variable: y
+xyndril> exit
+  Exiting REPL...
+
+
 ## Future Extensions
 - Control structures: `while`, `for`, pattern matching
 - User-defined functions and lambdas

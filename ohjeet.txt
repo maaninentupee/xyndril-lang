@@ -1,32 +1,74 @@
-Vaihe 6: Päivitä dev_report.md testitulosten ja automaation perusteella
+Vaihe 4: Päivitä dokumentaatio ja raportoi tulokset
 Ohje agentille:
 
-Päivitä viestintäkanava Xyndril-lang-projektille testitulosten ja automaation käyttöönoton perusteella:
+**Step-ID: 2025-04-24-T008-003**
+
+Päivitä dokumentaatio Xyndril-lang-projektille REPL-toteutuksen osalta:
+- Avaa Windsurf Editor
+- Siirry tiedostoon docs/language-spec.md
+- Lisää tiedoston loppuun (ennen "Future Extensions" -osiota) seuraava osio, joka dokumentoi REPL:n:
+
+Lisättävä sisältö (docs/language-spec.md):
+
+## REPL (Read-Eval-Print Loop)
+- **Overview**: Xyndril-lang provides an interactive REPL for evaluating statements.
+- **Usage**: Run `python3 run_editor_agent.py` to start the REPL.
+- **Features**:
+  - Evaluates arithmetic expressions, variables, and assignments.
+  - Displays results or error messages for each input.
+  - Type `exit` to quit the REPL.
+- **Example Session**:
+
+xyndril> 42;
+  42.0
+  xyndril> x = 10;
+  10.0
+  xyndril> x;
+  10.0
+  xyndril> (x + 20) * 2;
+  60.0
+  xyndril> y;
+  Error: Undefined variable: y
+  xyndril> exit
+  Exiting REPL...
+
+Ohje agentille (jatko):
+
+**Step-ID: 2025-04-24-T008-004**
+
+Raportoi REPL-toteutuksen ja testitulokset Xyndril-lang-projektille:
 - Avaa Windsurf Editor
 - Siirry tiedostoon dev_report.md
-- Lisää tiedoston loppuun seuraava osio (olettaen, että testit onnistuivat; muokkaa tarvittaessa, jos testit epäonnistuvat):
+- Lisää tiedoston loppuun seuraava osio (olettaen, että REPL toimii odotetusti; muokkaa tarvittaessa, jos virheitä ilmenee):
 
 Lisättävä sisältö (dev_report.md):
 
-## Päivitykset – 2025-04-23
-- **Testitulokset**: Yksikkötestit suoritettu onnistuneesti. Laajennettu testejä kattamaan muuttujat ja määrittelyt (`Variable`, `Assignment`).
-- **Dokumentaatio**: Päivitetty `docs/parser_spec.md` ja `docs/language-spec.md` vastaamaan parserin ja interpreterin nykytilaa.
-- **Automaatio**: Otettu käyttöön GitHub Actions -workflow testien ja lint-analyysin automaattiseen ajamiseen.
-- **Seuraava askel**: Siirry tehtävään `task-008` (täydennä REPL).
+## REPL Implementation – 2025-04-24
+- **Status**: Success
+- **Details**: REPL implemented in `run_editor_agent.py`, integrating the parser and interpreter. Supports arithmetic expressions, variables, and assignments. Tested with various inputs, including error cases.
+- **Test Results**:
+  - `42;` → 42.0
+  - `x = 10;` → 10.0
+  - `x;` → 10.0
+  - `(x + 20) * 2;` → 60.0
+  - `y;` → Error: Undefined variable: y
+  - `10 / 0;` → Error: Division by zero
+- **Documentation**: Updated `docs/language-spec.md` with REPL usage and examples.
+- **Next Steps**: Proceed to `task-009` (design server component).
 
 Ohje agentille (lisätoimenpide):
 
-Päivitä CHANGELOG.md Xyndril-lang-projektille merkinnällä testien laajentamisesta ja automaation käyttöönotosta:
+**Step-ID: 2025-04-24-T008-005**
+
+Päivitä CHANGELOG.md Xyndril-lang-projektille merkinnällä REPL-toteutuksesta:
 - Avaa Windsurf Editor
 - Siirry tiedostoon CHANGELOG.md
 - Lisää tiedoston alkuun seuraava merkintä:
 
-2025-04-23
- Laajennettu testejä kattamaan muuttujat ja määrittelyt.
+2025-04-24
+ Toteutettu REPL (run_editor_agent.py), joka tukee aritmeettisia lausekkeita, muuttujia ja määrittelyjä.
 
- Päivitetty dokumentaatio (parser_spec.md, language-spec.md).
-
- Otettu käyttöön GitHub Actions -workflow testien ja lint-analyysin automatisointiin.
+ Päivitetty dokumentaatio REPL:n osalta (language-spec.md).
 
 
 
